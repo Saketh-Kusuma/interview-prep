@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --background: #fafaf9;
+  --surface: #ffffff;
+  --surface-raised: #f4f4f2;
+  --foreground: #1c1c1e;
+  --muted: #6c6c74;
+  --border: #e5e5e2;
+  --border-strong: #d2d2ce;
+  --accent: #2563eb;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --band-red: #d13d3d;
+  --band-orange: #d97706;
+  --band-yellow: #a8870b;
+
+  /* Darker than the band equivalents on purpose: these tint 11px chip text, so
+     they have to clear 4.5:1 on white, which amber-600/green-600 do not. */
+  --status-learning: #b45309;
+  --status-confident: #2563eb;
+  --status-mastered: #15803d;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0c0c0e;
+    --surface: #16161a;
+    --surface-raised: #1e1e23;
+    --foreground: #ededf0;
+    --muted: #9a9aa5;
+    --border: #26262c;
+    --border-strong: #35353d;
+    --accent: #60a5fa;
+
+    --band-red: #f87171;
+    --band-orange: #fb923c;
+    --band-yellow: #fbbf24;
+
+    --status-learning: #fbbf24;
+    --status-confident: #60a5fa;
+    --status-mastered: #4ade80;
   }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+
+  --color-band-red: var(--band-red);
+  --color-band-orange: var(--band-orange);
+  --color-band-yellow: var(--band-yellow);
+
+  --color-learning: var(--status-learning);
+  --color-confident: var(--status-confident);
+  --color-mastered: var(--status-mastered);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Topic accordions are native <details>; hide the default disclosure marker so
+   the custom chevron is the only affordance. */
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
