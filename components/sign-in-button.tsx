@@ -2,22 +2,86 @@
 
 import { signInWithPopup, signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import { AppMark } from "@/components/app-mark";
 import { clientAuth, googleProvider } from "@/lib/firebase/client";
+
+/**
+ * Google is done but the server hasn't sent the signed-in tree yet. Without
+ * this the sign-in screen sits there looking untouched for the length of a
+ * round trip, which reads as "the click did nothing".
+ */
+function SigningInOverlay() {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-background/80 px-6 backdrop-blur-md transition-opacity duration-300 starting:opacity-0"
+    >
+      {/* Same accent wash as the sign-in screen, so the swap feels continuous. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 left-1/2 h-[22rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-3xl"
+      />
+
+      <div className="relative grid size-[4.5rem] place-items-center">
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 animate-pulse rounded-full bg-accent/15 blur-md"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-full border-2 border-border-strong/60"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-accent border-r-accent/40"
+        />
+        <AppMark className="size-10" />
+      </div>
+
+      <div className="relative text-center">
+        {/* Carries the message on its own: the global reduced-motion rule
+            freezes the ring, so the copy can't be decorative. */}
+        <p className="text-[15px] font-medium tracking-tight">Signing you in…</p>
+        <p className="mt-1.5 text-[13px] text-muted">Loading your progress</p>
+      </div>
+    </div>
+  );
+}
+
+type Phase = "idle" | "popup" | "entering";
 
 export function SignInButton() {
   const router = useRouter();
-  const [busy, setBusy] = useState(false);
+  const [phase, setPhase] = useState<Phase>("idle");
   const [error, setError] = useState<string | null>(null);
+  const stallTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // A successful sign-in unmounts this component, which clears the stall timer
+  // below; this only fires if the tree somehow sticks around.
+  useEffect(
+    () => () => {
+      if (stallTimer.current) clearTimeout(stallTimer.current);
+    },
+    [],
+  );
+
+  const busy = phase !== "idle";
 
   async function signIn() {
-    setBusy(true);
+    setPhase("popup");
     setError(null);
 
     try {
       const auth = clientAuth();
       const credential = await signInWithPopup(auth, googleProvider());
+
+      // Google is behind us — everything from here is our own latency, so take
+      // over the screen instead of leaving the login page up.
+      setPhase("entering");
+
       const idToken = await credential.user.getIdToken();
 
       const response = await fetch("/api/auth/session", {
@@ -51,11 +115,17 @@ export function SignInButton() {
       } else {
         setError(cause instanceof Error ? cause.message : "Sign-in failed.");
       }
-      setBusy(false);
+      setPhase("idle");
       return;
     }
 
-    setBusy(false);
+    // Deliberately stay in "entering": the refresh above is in flight and the
+    // server render replaces this tree. Dropping back to idle here is what used
+    // to flash the login page. The timer is only a dead-end guard.
+    stallTimer.current = setTimeout(() => {
+      setPhase("idle");
+      setError("Signed in, but the page didn't load. Please reload.");
+    }, 15_000);
   }
 
   return (
@@ -92,6 +162,8 @@ export function SignInButton() {
           {error}
         </p>
       )}
+
+      {phase === "entering" && <SigningInOverlay />}
     </div>
   );
 }

@@ -86,7 +86,7 @@ export default async function Home() {
                 Interview Prep
               </p>
               <p className="truncate text-[11px] text-muted">
-                Highest-priority topics first
+                Track your interview prep for java and mern
               </p>
             </div>
           </div>
