@@ -30,6 +30,24 @@ export const jpaHibernate: Topic = {
       ],
     },
     {
+      slug: "lifecycle",
+      title: "Entity Lifecycle",
+      emphasis: 3,
+      notes: [
+        {
+          kind: "question",
+          text: "You load an entity, close the transaction, then change a field. Does the update reach the database?",
+        },
+      ],
+      subtopics: [
+        {
+          slug: "entity-states",
+          title: "Entity states (transient / persistent / detached / removed)",
+        },
+        { slug: "save-persist-merge", title: "save() vs persist() vs merge()" },
+      ],
+    },
+    {
       slug: "queries",
       title: "Queries",
       subtopics: [

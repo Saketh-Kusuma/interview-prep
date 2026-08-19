@@ -31,7 +31,7 @@ const ProgressContext = createContext<ProgressContextValue | null>(null);
  *
  * Writes are applied locally first and sent to the server in the background, so
  * clicking a status chip never waits on a round trip. The server actions
- * deliberately don't revalidate the page: re-rendering ~390 rows on every click
+ * deliberately don't revalidate the page: re-rendering ~420 rows on every click
  * would be slower than the update it replaces, and this state is already the
  * newest version. A reload reads the database again.
  */

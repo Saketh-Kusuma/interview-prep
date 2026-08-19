@@ -12,6 +12,7 @@ export const javaMultithreading: Topic = {
       slug: "threads",
       title: "Threads",
       subtopics: [
+        { slug: "process-vs-thread", title: "Process vs thread (what multithreading is)" },
         { slug: "thread-lifecycle", title: "Thread lifecycle" },
         { slug: "runnable-vs-thread", title: "Runnable vs Thread" },
         { slug: "start-vs-run", title: "start() vs run()" },
@@ -28,6 +29,10 @@ export const javaMultithreading: Topic = {
         { slug: "synchronized", title: "synchronized" },
         { slug: "volatile", title: "volatile" },
         { slug: "locks", title: "Locks (ReentrantLock)" },
+        {
+          slug: "synchronized-vs-lock",
+          title: "synchronized vs Lock vs ReentrantLock",
+        },
         { slug: "deadlock", title: "Deadlock" },
         { slug: "race-condition", title: "Race condition" },
       ],

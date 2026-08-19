@@ -69,7 +69,7 @@ applies the change locally through a `latest` ref (so callbacks don't depend on
 the newest render), fires the Server Action in the background, and rolls back
 plus raises `ErrorBanner` on failure. The actions in `app/actions/progress.ts`
 **intentionally do not call `revalidatePath`** — the summary already reads from
-client context, and re-rendering ~390 rows per chip click would cost more than
+client context, and re-rendering ~420 rows per chip click would cost more than
 the write. A reload re-reads the database.
 
 Server Actions are public endpoints, so both validate before touching Postgres:

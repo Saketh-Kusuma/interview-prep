@@ -49,5 +49,27 @@ export const dsa: Topic = {
         { slug: "bfs-dfs", title: "BFS / DFS" },
       ],
     },
+    {
+      slug: "classic-problems",
+      title: "Classic Coding-Round Problems",
+      emphasis: 3,
+      notes: [
+        {
+          kind: "callout",
+          text: "These come up verbatim in first-round screens. Be able to write each one without an IDE, then state its complexity.",
+        },
+      ],
+      subtopics: [
+        { slug: "reverse-a-string", title: "Reverse a string" },
+        { slug: "find-duplicates", title: "Find duplicate elements in an array" },
+        {
+          slug: "first-non-repeating-char",
+          title: "First non-repeating character",
+        },
+        { slug: "palindrome-check", title: "Check if a string is a palindrome" },
+        { slug: "second-largest", title: "Find the second-largest number" },
+        { slug: "reverse-linked-list", title: "Reverse a linked list" },
+      ],
+    },
   ],
 };

@@ -2,7 +2,7 @@ import type { Topic } from "../types";
 
 export const systemDesign: Topic = {
   slug: "system-design",
-  rank: 14,
+  rank: 15,
   band: "yellow",
   title: "System Design",
   stars: 3,

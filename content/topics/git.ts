@@ -2,7 +2,7 @@ import type { Topic } from "../types";
 
 export const git: Topic = {
   slug: "git",
-  rank: 13,
+  rank: 14,
   band: "yellow",
   title: "Git / GitHub",
   stars: 3,

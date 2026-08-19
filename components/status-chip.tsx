@@ -24,7 +24,7 @@ function step(status: Status, delta: number): Status {
 
 /**
  * One tap advances the state; arrow keys move either direction. A cycling
- * control keeps 390-plus rows scannable, so the label carries the full state so
+ * control keeps 400-plus rows scannable, so the label carries the full state so
  * screen readers aren't left guessing what the letter means.
  */
 export function StatusChip({

@@ -1,6 +1,6 @@
 # Interview Prep
 
-A personal interview-readiness tracker: 392 subtopics across 15 topics, ordered by
+A personal interview-readiness tracker: 420 subtopics across 16 topics, ordered by
 how often interviews actually ask about them. Each topic is an accordion; each
 subtopic carries a 4-state confidence level and your own note.
 
@@ -70,7 +70,7 @@ moves as you study rather than only when you finish.
 **Optimistic writes.** Clicking a chip updates the UI immediately and fires a
 Server Action; a failure rolls the value back and raises a banner. The Server
 Actions deliberately don't revalidate — the summary reads from client context, and
-re-rendering ~390 rows on every click would cost more than the update itself.
+re-rendering ~420 rows on every click would cost more than the update itself.
 
 **Search** matches subtopic titles, section and topic names, and your note text.
 While a query is active the accordions are hidden rather than unmounted, so

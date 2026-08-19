@@ -6,9 +6,9 @@ import type { Topic } from "../types";
  */
 export const dockerAws: Topic = {
   slug: "docker-aws",
-  rank: 15,
+  rank: 16,
   band: "yellow",
-  title: "Docker / AWS",
+  title: "Docker / AWS / DevOps",
   stars: 3,
   authored: true,
   notes: [
@@ -50,6 +50,22 @@ export const dockerAws: Topic = {
         { slug: "lambda", title: "Lambda & serverless basics" },
         { slug: "cloudwatch", title: "CloudWatch (logs & metrics)" },
         { slug: "deploying-an-app", title: "Deploying a full-stack app end to end" },
+      ],
+    },
+    {
+      slug: "cicd",
+      title: "CI/CD & Orchestration",
+      notes: [
+        {
+          kind: "callout",
+          text: "Knowing what a pipeline does and where your build fits is enough. You are not expected to author Kubernetes manifests.",
+        },
+      ],
+      subtopics: [
+        { slug: "ci-cd-pipeline", title: "What a CI/CD pipeline does" },
+        { slug: "jenkins-pipeline", title: "Jenkins pipeline (stages, Jenkinsfile)" },
+        { slug: "kubernetes-basics", title: "Kubernetes basics (pod, service, deployment)" },
+        { slug: "blue-green-deployment", title: "Blue-green deployment" },
       ],
     },
   ],

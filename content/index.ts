@@ -10,6 +10,7 @@ import { mongodb } from "./topics/mongodb";
 import { springSecurity } from "./topics/spring-security";
 import { jpaHibernate } from "./topics/jpa-hibernate";
 import { javaMultithreading } from "./topics/java-multithreading";
+import { microservices } from "./topics/microservices";
 import { git } from "./topics/git";
 import { systemDesign } from "./topics/system-design";
 import { dockerAws } from "./topics/docker-aws";
@@ -29,6 +30,7 @@ export const TOPICS: readonly Topic[] = [
   springSecurity,
   jpaHibernate,
   javaMultithreading,
+  microservices,
   git,
   systemDesign,
   dockerAws,

@@ -29,8 +29,13 @@ export const springBoot: Topic = {
         { slug: "service", title: "@Service" },
         { slug: "repository", title: "@Repository" },
         { slug: "controller", title: "@Controller" },
+        {
+          slug: "component-vs-service-vs-repository",
+          title: "@Component vs @Service vs @Repository",
+        },
         { slug: "autowired", title: "@Autowired" },
         { slug: "qualifier", title: "@Qualifier" },
+        { slug: "autowired-vs-qualifier", title: "@Autowired vs @Qualifier" },
         { slug: "configuration", title: "@Configuration" },
         { slug: "bean", title: "@Bean" },
       ],
@@ -39,6 +44,7 @@ export const springBoot: Topic = {
       slug: "spring-boot",
       title: "Spring Boot",
       subtopics: [
+        { slug: "spring-vs-spring-boot", title: "Spring vs Spring Boot" },
         { slug: "auto-configuration", title: "Auto-configuration" },
         { slug: "starters", title: "Starter dependencies" },
         {
@@ -91,6 +97,10 @@ export const springBoot: Topic = {
           title: "Exception handling (@ControllerAdvice)",
         },
         { slug: "status-codes", title: "HTTP status codes" },
+        {
+          slug: "pagination-sorting",
+          title: "Pagination & sorting (Pageable)",
+        },
         { slug: "cors", title: "CORS configuration" },
         { slug: "layered-architecture", title: "Layered architecture" },
       ],

@@ -61,6 +61,10 @@ export const sql: Topic = {
         { slug: "transactions", title: "Transactions" },
         { slug: "acid", title: "ACID properties" },
         { slug: "query-optimization", title: "Query optimization basics" },
+        {
+          slug: "second-highest-salary",
+          title: "Query: second-highest salary",
+        },
       ],
     },
   ],
